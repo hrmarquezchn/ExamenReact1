@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-
 const Formulario = ({ notas, setNotas, handleSubmit }) => {
-  const { register, handleSubmit: handleFormSubmit, errors } = useForm();
+  const { register, handleSubmit: handleFormSubmit, formState: { errors } } = useForm();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,48 +13,49 @@ const Formulario = ({ notas, setNotas, handleSubmit }) => {
     <form onSubmit={handleFormSubmit(handleSubmit)}>
       <div className="form-group">
         <label htmlFor="parcial1">Primer Parcial (30%)</label>
-        <input 
-          type="number" 
-          className="form-control" 
-          id="parcial1" 
-          name="parcial1" 
-          min="0" 
-          max="30" 
-          value={notas.parcial1} 
+        <input
+          type="number"
+          className="form-control"
+          id="parcial1"
+          name="parcial1"
+          min="0"
+          max="30"
+          value={notas.parcial1}
           onChange={handleChange}
-          ref={register({ required: true })}
+          {...register({ required: true })}
         />
         {errors.parcial1 && <span className="text-danger">Campo obligatorio</span>}
       </div>
       <div className="form-group">
         <label htmlFor="parcial2">Segundo Parcial (30%)</label>
-        <input 
-          type="number" 
-          className="form-control" 
-          id="parcial2" 
-          name="parcial2" 
-          min="0" 
-          max="30" 
-          value={notas.parcial2} 
+        <input
+          type="number"
+          className="form-control"
+          id="parcial2"
+          name="parcial2"
+          min="0"
+          max="30"
+          value={notas.parcial2}
           onChange={handleChange}
-          ref={register({ required: true })}
+          {...register({ required: true })}
         />
         {errors.parcial2 && <span className="text-danger">Campo obligatorio</span>}
       </div>
       <div className="form-group">
         <label htmlFor="parcial3">Tercer Parcial (40%)</label>
-        <input 
-          type="number" 
-          className="form-control" 
-          id="parcial3" 
-          name="parcial3" 
-          min="0" 
-          max="40" 
-          value={notas.parcial3} 
+        <input
+          type="number"
+          className="form-control"
+          id="parcial3"
+          name="parcial3"
+          min="0"
+          max="40"
+          value={notas.parcial3}
           onChange={handleChange}
-          ref={register({ required: true })}
+          {...register({ required: true })}
         />
-        {errors.parcial2 && <span className="text-danger">Campo obligatorio</span>} </div>
+        {errors.parcial3 && <span className="text-danger">Campo obligatorio</span>}
+      </div>
       <button type="submit" className="btn btn-primary">Calcular Nota</button>
     </form>
   );
